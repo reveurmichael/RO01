@@ -1,8 +1,9 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
+
 class Hungarian:
-    def __init__(self, n_u, n_v):
+    def __init__(self, n_u, n_v, edges):
         self.num_vertices_U = n_u
         self.num_vertices_V = n_v
         self.G = nx.Graph()
@@ -11,7 +12,6 @@ class Hungarian:
         self.visited = []
 
         # Add edges to the bipartite graph
-        edges = [(0, 4), (0, 5), (1, 5), (1, 6), (2, 4), (2, 5), (3, 6), (1, 7), (3, 7)]
         self.G.add_edges_from(edges)
 
         for i in range(self.total_num):
@@ -50,6 +50,8 @@ class Hungarian:
                     return True
         return False
 
-# Create an instance of Hungarian algorithm with 4 nodes in each set
-hungarian = Hungarian(4, 4)
-hungarian.run()
+
+if __name__ == "__main__":
+    edges = [(0, 4), (0, 5), (1, 5), (1, 6), (2, 4), (2, 5), (3, 6), (1, 7), (3, 7)]
+    hungarian = Hungarian(4, 4, edges)
+    hungarian.run()
