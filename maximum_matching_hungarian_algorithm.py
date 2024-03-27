@@ -9,7 +9,7 @@ class Hungarian:
         self.G = nx.Graph()  # Create an empty undirected graph using NetworkX
         self.total_num = n_u + n_v  # Total number of vertices in both sets
         self.matching = {}  # Dictionary to store matching pairs
-        self.visited = []  # List to track visited vertices during the matching process
+        self.visited = {}  # List to track visited vertices during the matching process
 
         # Add edges to the bipartite graph
         self.G.add_edges_from(edges)  # Add edges to the graph from the provided list
@@ -18,10 +18,15 @@ class Hungarian:
         for i in range(self.total_num):
             self.matching[i] = -1
 
+        for v in range(self.num_vertices_U, self.total_num):
+            self.visited[v] = False
+
     def run(self):
         total_matching = 0  # Counter to keep track of the total number of matchings found
         for i in range(self.num_vertices_U):
-            self.visited = [False] * self.num_vertices_V  # Reset visited list for each vertex in set U
+            # Reset visited list for each vertex in set U
+            for v in range(self.num_vertices_U, self.total_num):
+                self.visited[v] = False
             if self.find_matching_with_augmenting_path(i):  # Find matching using augmenting paths
                 total_matching += 1  # Increment total matching count
                 self.draw_graph()  # Visualize the current matching
@@ -37,8 +42,8 @@ class Hungarian:
         # Iterate through vertices in set V
         for v in range(self.num_vertices_U, self.total_num):
             # Check if there is an edge between vertices from U and V and if v has not been visited
-            if self.G.has_edge(u, v) and not self.visited[v - self.num_vertices_U]:
-                self.visited[v - self.num_vertices_U] = True  # Mark v as visited
+            if self.G.has_edge(u, v) and not self.visited[v]:
+                self.visited[v] = True  # Mark v as visited
                 '''
                 If v is not matched, we match it with u.
                 If v is already matched, we explore other vertices in U
