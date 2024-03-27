@@ -33,6 +33,7 @@ class Hungarian:
                 self.draw_graph()  # Visualize the current matching
                 print("total_matching increased by 1")  # Print a message indicating a matching was found
 
+        print("Final result")
         print("Total =", total_matching)  # Print the total number of matchings found
         for u, v in self.matching.items():
             if v != -1:
@@ -46,8 +47,8 @@ class Hungarian:
         print(f"find_matching_with_augmenting_path for Left node {u}")
         for v in range(self.num_vertices_U, self.total_num):
             # Check if there is an edge between vertices from U and V and if v has not been visited
-            print(f"check Right node {v}")
             if self.G.has_edge(u, v) and not self.visited[v]:
+                print(f"check Right node {v} for Left node {u}")
                 self.visited[v] = True  # Mark v as visited
                 '''
                 If v is not matched, we match it with u.
@@ -60,9 +61,11 @@ class Hungarian:
                 if self.find_matching_with_augmenting_path(self.matching[v]):
                     to_update_matching = True
                 if to_update_matching:
+                    print(f"matching found for node {u} and node {v}. No need to go further")
                     self.matching[v] = u  # Update the matching pairs
                     self.matching[u] = v
                     return True  # Matching found
+        print(f"No matching found for Left node {u}")
         return False  # No matching found for u
 
     def draw_graph(self):
