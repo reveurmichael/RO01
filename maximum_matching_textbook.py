@@ -1,6 +1,13 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
+
+'''
+WIP. Work in progress.
+
+Not functioning yet.
+'''
+
 class Hungarian:
     def __init__(self, n_u, n_v, edges):
         # Initialize the Hungarian class with the number of vertices in sets U and V, and the list of edges
