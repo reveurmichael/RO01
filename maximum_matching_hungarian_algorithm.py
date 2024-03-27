@@ -24,7 +24,7 @@ class Hungarian:
             if self.find_augmenting_path(i):
                 total_matching += 1
                 self.draw_graph()
-                pass
+                print("total_matching increased by 1")
 
         print("Total =", total_matching)
         for u, v in self.matching.items():
