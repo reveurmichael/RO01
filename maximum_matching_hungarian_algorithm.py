@@ -24,6 +24,7 @@ class Hungarian:
     def run(self):
         total_matching = 0  # Counter to keep track of the total number of matchings found
         for i in range(self.num_vertices_U):
+            print(f"Check Left node {i}")
             # Reset visited list for each vertex in set U
             for v in range(self.num_vertices_U, self.total_num):
                 self.visited[v] = False
@@ -40,8 +41,12 @@ class Hungarian:
 
     def find_matching_with_augmenting_path(self, u):
         # Iterate through vertices in set V
+        if u == -1:
+            return
+        print(f"find_matching_with_augmenting_path for Left node {u}")
         for v in range(self.num_vertices_U, self.total_num):
             # Check if there is an edge between vertices from U and V and if v has not been visited
+            print(f"check Right node {v}")
             if self.G.has_edge(u, v) and not self.visited[v]:
                 self.visited[v] = True  # Mark v as visited
                 '''
@@ -49,7 +54,12 @@ class Hungarian:
                 If v is already matched, we explore other vertices in U
                 to find a possible matching, following the unmatched -> matched -> unmatched pattern.
                 '''
-                if self.matching[v] == -1 or self.find_matching_with_augmenting_path(self.matching[v]):
+                to_update_matching = False
+                if self.matching[v] == -1:
+                    to_update_matching = True
+                if self.find_matching_with_augmenting_path(self.matching[v]):
+                    to_update_matching = True
+                if to_update_matching:
                     self.matching[v] = u  # Update the matching pairs
                     self.matching[u] = v
                     return True  # Matching found
