@@ -32,7 +32,7 @@ class Hungarian:
             # Reset visited list for each vertex in set U
             for v in range(self.num_vertices_U, self.total_num):
                 self.visited[v] = False
-            if self.find_matching_with_augmenting_path(i):  # Find matching using augmenting paths
+            if self.find_matching_with_augmenting_path(-1, i):  # Find matching using augmenting paths
                 total_matching += 1  # Increment total matching count
                 print("total_matching increased by 1")  # Print a message indicating a matching was found
                 self.draw_graph()  # Visualize the current matching
@@ -45,11 +45,11 @@ class Hungarian:
                 print(u, "->", v)  # Print the matching pairs
         self.draw_graph()  # Final visualization of the bipartite graph with all matchings
 
-    def find_matching_with_augmenting_path(self, u):
+    def find_matching_with_augmenting_path(self, caller, u):
         # Iterate through vertices in set V
         if u == -1:
             return
-        print(f"find_matching_with_augmenting_path for Left node {u}")
+        print(f"find_matching_with_augmenting_path by {caller} for Left node {u}")
         for v in range(self.num_vertices_U, self.total_num):
             # Check if there is an edge between vertices from U and V and if v has not been visited
             if self.G.has_edge(u, v) and not self.visited[v]:
@@ -64,8 +64,10 @@ class Hungarian:
                 if self.matching[v] == -1:
                     print(f"new matching found because self.matching[{v}] == -1")
                     to_update_matching = True
-                if self.find_matching_with_augmenting_path(self.matching[v]):
-                    print(f"new matching found because self.find_matching_with_augmenting_path(self.matching[{v}]) == True")
+                if self.find_matching_with_augmenting_path(u, self.matching[v]):
+                    print(f"new matching found because self.find_matching_with_augmenting_path({caller}, self.matching"
+                          f"[{v}]) "
+                          f"== True")
                     to_update_matching = True
                 if to_update_matching:
                     print(f"matching found for node {u} and node {v}. No need to go further for the Right side.")
