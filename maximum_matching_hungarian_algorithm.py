@@ -62,10 +62,10 @@ class Hungarian:
                 '''
                 to_update_matching = False
                 if self.matching[v] == -1:
-                    print(f"new matching found becasue self.matching[{v}] == -1")
+                    print(f"new matching found because self.matching[{v}] == -1")
                     to_update_matching = True
                 if self.find_matching_with_augmenting_path(self.matching[v]):
-                    print(f"new matching found becasue self.find_matching_with_augmenting_path(self.matching[{v}]) == True")
+                    print(f"new matching found because self.find_matching_with_augmenting_path(self.matching[{v}]) == True")
                     to_update_matching = True
                 if to_update_matching:
                     print(f"matching found for node {u} and node {v}. No need to go further for the Right side.")
