@@ -30,8 +30,9 @@ class Hungarian:
                 self.visited[v] = False
             if self.find_matching_with_augmenting_path(i):  # Find matching using augmenting paths
                 total_matching += 1  # Increment total matching count
-                self.draw_graph()  # Visualize the current matching
                 print("total_matching increased by 1")  # Print a message indicating a matching was found
+                self.draw_graph()  # Visualize the current matching
+
 
         print("Final result")
         print("Total =", total_matching)  # Print the total number of matchings found
@@ -57,11 +58,15 @@ class Hungarian:
                 '''
                 to_update_matching = False
                 if self.matching[v] == -1:
+                    print(f"new matching found becasue self.matching[{v}] == -1")
                     to_update_matching = True
                 if self.find_matching_with_augmenting_path(self.matching[v]):
+                    print(
+                        f"new matching found becasue self.find_matching_with_augmenting_path(self.matching[{v}]) == True"
+                    )
                     to_update_matching = True
                 if to_update_matching:
-                    print(f"matching found for node {u} and node {v}. No need to go further")
+                    print(f"matching found for node {u} and node {v}. No need to go further for the Right side.")
                     self.matching[v] = u  # Update the matching pairs
                     self.matching[u] = v
                     return True  # Matching found
