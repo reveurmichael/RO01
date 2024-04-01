@@ -8,6 +8,10 @@ https://en.wikipedia.org/wiki/Combinatorial_optimization
 https://en.wikipedia.org/wiki/Shortest_path_problem
 
 
+## Sorting_algorithm
+
+https://en.wikipedia.org/wiki/Sorting_algorithm
+
 ## Minimum spanning tree
 
 https://en.wikipedia.org/wiki/Minimum_spanning_tree
