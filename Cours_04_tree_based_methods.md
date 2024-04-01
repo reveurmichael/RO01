@@ -30,6 +30,8 @@ https://en.wikipedia.org/wiki/Maximal_independent_set
 
 https://en.wikipedia.org/wiki/Travelling_salesman_problem
 
+https://www.theorsociety.com/about-or/or-methods/heuristics/a-brief-history-of-the-travelling-salesman-problem/ (LITTLE)
+
 ## Boolean satisfiability problem
 
 https://en.wikipedia.org/wiki/Boolean_satisfiability_problem
