@@ -43,5 +43,5 @@ https://www.javatpoint.com/n-queens-problems
 https://en.wikipedia.org/wiki/Eight_queens_puzzle
 
 ## Heuristic
-https://en.wikipedia.org/wiki/Heuristic
+https://en.wikipedia.org/wiki/Heuristic_(computer_science)
 
