@@ -1,6 +1,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
+
 def dfs(graph, start):
     visited = set()
     stack = [start]
@@ -11,6 +12,7 @@ def dfs(graph, start):
             visited.add(node)
             yield node
             stack.extend(reversed(list(graph.neighbors(node))))
+
 
 def draw_graph_with_dfs(graph, start):
     pos = nx.spring_layout(graph)
