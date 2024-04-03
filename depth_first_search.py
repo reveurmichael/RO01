@@ -10,7 +10,7 @@ def dfs(graph, start):
         if node not in visited:
             visited.add(node)
             yield node
-            stack.extend(reversed(list(graph.neighbors(node))))  # Convert to list before reversing
+            stack.extend(reversed(list(graph.neighbors(node))))
 
 def draw_graph_with_dfs(graph, start):
     pos = nx.spring_layout(graph)
